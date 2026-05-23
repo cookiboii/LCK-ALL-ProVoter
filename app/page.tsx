@@ -5,9 +5,26 @@ import { Player, Role, TeamCode } from "../components/types";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Shield, Zap, Sword, Crosshair, Heart, X, Plus, Search, 
-  Trophy, Share2, RefreshCw, Star, Users, Check, ExternalLink, ArrowRight,
-  Globe, Github
+  Trophy, Share2, RefreshCw, Star, Users, Check, ArrowRight,
+  Globe
 } from "lucide-react";
+
+const Github = ({ className }: { className?: string }) => (
+  <svg
+    viewBox="0 0 24 24"
+    width="24"
+    height="24"
+    stroke="currentColor"
+    strokeWidth="2"
+    fill="none"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+    <path d="M9 18c-4.51 2-5-2-7-2" />
+  </svg>
+);
 
 export type Lang = "en" | "ko";
 
@@ -49,8 +66,8 @@ export const TRANSLATIONS = {
     shareFooter: "Create your own All-Pro roster at LCK All-Pro Voter!",
     emptySlot: "Empty",
     notSelected: "Not selected",
-    footerText: "LCK All-Pro Selector 2026. Made with ❤️. LCK is a registered trademark of League of Legends Champions Korea & Riot Games.",
-    rosterRef: "Roster Reference (Namu.wiki)"
+    createdBy: "Created by cookiboii",
+    trademarkText: "LCK is a registered trademark of League of Legends Champions Korea & Riot Games."
   },
   ko: {
     officialBadge: "LCK 공식 올프로 선정",
@@ -89,8 +106,8 @@ export const TRANSLATIONS = {
     shareFooter: "LCK 올프로 투표기에서 나만의 올프로 로스터를 완성해 보세요!",
     emptySlot: "비어 있음",
     notSelected: "미선택",
-    footerText: "LCK 올프로 셀렉터 2026. 제작: ❤️. LCK는 League of Legends Champions Korea 및 Riot Games의 등록 상표입니다.",
-    rosterRef: "참가팀 로스터 참고 (나무위키)"
+    createdBy: "만든이: cookiboii",
+    trademarkText: "LCK는 League of Legends Champions Korea 및 Riot Games의 등록 상표입니다."
   }
 };
 
@@ -800,18 +817,12 @@ export default function Home() {
       </AnimatePresence>
 
       {/* Footer Info */}
-      <footer className="text-center py-6 text-xs text-slate-500 flex flex-col gap-2">
-        <div>
-          {t.footerText}
-        </div>
-        <div className="flex items-center justify-center gap-4 mt-1">
-          <a href="https://namu.wiki/w/League%20of%20Legends%20Champions%20Korea/%EC%B0%B8%EA%B0%80%ED%8C%80%20%EB%A1%9C%EC%8A%A4%ED%84%B0" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-1 font-bold">
-            {t.rosterRef} <ExternalLink className="w-3 h-3" />
-          </a>
-          <span className="text-slate-600">|</span>
-          <a href="https://github.com/cookiboii" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-1.5 font-bold">
-            <Github className="w-3.5 h-3.5" /> GitHub
-          </a>
+      <footer className="text-center py-6 text-xs text-slate-500 flex flex-col gap-2 items-center justify-center">
+        <a href="https://github.com/cookiboii" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-1.5 font-bold">
+          <Github className="w-3.5 h-3.5" /> {t.createdBy}
+        </a>
+        <div className="text-slate-600 text-[10px] max-w-md px-4 leading-relaxed">
+          {t.trademarkText}
         </div>
       </footer>
 
