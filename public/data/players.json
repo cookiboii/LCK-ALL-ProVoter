@@ -27,7 +27,7 @@
   { "id": "kt_jug", "name": "Cuzz", "role": "JUG", "team": "KT", "grade": "B", "cost": 20 },
   { "id": "kt_mid", "name": "Bdd", "role": "MID", "team": "KT", "grade": "A", "cost": 25 },
   { "id": "kt_adc", "name": "Aiming", "role": "ADC", "team": "KT", "grade": "A", "cost": 25 },
-  { "id": "kt_spt", "name": "Pollu", "role": "SPT", "team": "KT", "grade": "C", "cost": 15 },
+  { "id": "kt_spt", "name": "Effort", "role": "SPT", "team": "KT", "grade": "C", "cost": 15 },
 
   { "id": "fox_top", "name": "Clear", "role": "TOP", "team": "FOX", "grade": "C", "cost": 15 },
   { "id": "fox_jug", "name": "Raptor", "role": "JUG", "team": "FOX", "grade": "C", "cost": 15 },
