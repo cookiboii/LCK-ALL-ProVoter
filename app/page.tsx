@@ -1,14 +1,13 @@
 "use client";
 
-import { useState, useEffect, useMemo, useRef } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Player, Role, TeamCode } from "../components/types";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Shield, Zap, Sword, Crosshair, Heart, X, Plus, Search, 
-  Trophy, Download, Share2, RefreshCw, Star, Users, Check, ExternalLink, ArrowRight,
+  Trophy, Share2, RefreshCw, Star, Users, Check, ExternalLink, ArrowRight,
   Globe
 } from "lucide-react";
-import html2canvas from "html2canvas-pro";
 
 export type Lang = "en" | "ko";
 
@@ -163,9 +162,6 @@ export default function Home() {
   const [teamFilter, setTeamFilter] = useState<TeamCode | "ALL">("ALL");
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
-  const [isExporting, setIsExporting] = useState(false);
-
-  const boardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Language
@@ -345,35 +341,6 @@ export default function Home() {
       .catch(() => triggerToast(t.copyFailToast));
   };
 
-  const handleExportImage = () => {
-    if (!boardRef.current) return;
-    setIsExporting(true);
-    triggerToast(t.generatingToast);
-
-    setTimeout(() => {
-      html2canvas(boardRef.current!, {
-        backgroundColor: "#0d1321",
-        scale: 2,
-        useCORS: true,
-        allowTaint: true,
-        logging: false,
-      })
-      .then((canvas) => {
-        const link = document.createElement("a");
-        link.download = `LCK_2026_AllPro.png`;
-        link.href = canvas.toDataURL("image/png");
-        link.click();
-        triggerToast(t.downloadToast);
-        setIsExporting(false);
-      })
-      .catch((err) => {
-        console.error("Failed image generation", err);
-        triggerToast(t.exportFailToast);
-        setIsExporting(false);
-      });
-    }, 500);
-  };
-
   return (
     <>
       {/* Ambient Background Glows & Grid */}
@@ -452,13 +419,6 @@ export default function Home() {
             <Share2 className="w-4 h-4 text-blue-400" /> {t.shareRoster}
           </button>
           <button 
-            onClick={handleExportImage}
-            disabled={isExporting}
-            className="px-5 py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 rounded-xl text-sm font-black transition-all flex items-center gap-2 cursor-pointer shadow-lg shadow-amber-500/15 hover:shadow-amber-500/25 hover:-translate-y-0.5"
-          >
-            <Download className="w-4 h-4" /> {t.downloadCard}
-          </button>
-          <button 
             onClick={handleReset}
             className="px-4 py-3 bg-red-950/20 hover:bg-red-950/40 text-red-400 border border-red-900/30 hover:border-red-900/50 rounded-xl text-sm font-bold transition-all flex items-center gap-2 cursor-pointer"
           >
@@ -469,7 +429,6 @@ export default function Home() {
 
       {/* Roster Selection Board */}
       <section 
-        ref={boardRef}
         className="glass-panel p-6 md:p-8 flex flex-col gap-8 border-slate-800/80 bg-slate-950/50 relative overflow-hidden"
       >
         {/* Subtle Watermark on Export */}
