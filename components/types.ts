@@ -8,7 +8,6 @@ export interface Player {
   role: Role;
   team: TeamCode;
   grade: Grade;
-  cost: number;
   isRookie?: boolean;
 }
 
