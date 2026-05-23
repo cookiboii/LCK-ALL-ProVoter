@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   Shield, Zap, Sword, Crosshair, Heart, X, Plus, Search, 
   Trophy, Share2, RefreshCw, Star, Users, Check, ExternalLink, ArrowRight,
-  Globe
+  Globe, Github
 } from "lucide-react";
 
 export type Lang = "en" | "ko";
@@ -804,9 +804,13 @@ export default function Home() {
         <div>
           {t.footerText}
         </div>
-        <div className="flex items-center justify-center gap-3 mt-1">
+        <div className="flex items-center justify-center gap-4 mt-1">
           <a href="https://namu.wiki/w/League%20of%20Legends%20Champions%20Korea/%EC%B0%B8%EA%B0%80%ED%8C%80%20%EB%A1%9C%EC%8A%A4%ED%84%B0" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-1 font-bold">
             {t.rosterRef} <ExternalLink className="w-3 h-3" />
+          </a>
+          <span className="text-slate-600">|</span>
+          <a href="https://github.com/cookiboii" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-1.5 font-bold">
+            <Github className="w-3.5 h-3.5" /> GitHub
           </a>
         </div>
       </footer>
